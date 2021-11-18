@@ -52,4 +52,15 @@ class User extends Authenticatable
     {
         return $this->hasOne(Producto::class);
     }
+
+    public function adminlte_image(){
+        return '/img/user-default.jpg';
+    }
+    public function adminlte_desc(){
+        return 'Administrador';
+    }
+
+    public function adminlte_profile_url(){
+        return 'ss/bb';
+    }
 }
