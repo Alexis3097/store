@@ -47,16 +47,14 @@
                             <td>{{$usuario->lastname_1}}</td>
                             <td>{{$usuario->lastname_2}}</td>
                             <td>
-                                <a href="{{route('usuarios.edit',['usuario'=>$usuario->id])}}" class="btn btn-outline-warning" data-toggle="tooltip" data-placement="left"
+                                <a href="{{route('usuarios.edit',['usuario'=>$usuario->id])}}"
+                                   class="btn btn-outline-warning" data-toggle="tooltip" data-placement="left"
                                    title="Editar usuario"><i class="fa fa-edit"></i></a>
-                                <span data-toggle="tooltip" data-placement="left" title="Eliminar usuario"><button
-                                        type="button"
-                                        name="delete_modal"
-                                        class="btn btn-outline-danger delete"
-                                        data-toggle="modal"
-                                        data-target="#eliminarPaciente">
-                                                                    <i class="fa fa-trash"></i>
-                                                                </button></span>
+                                <span data-toggle="tooltip" data-placement="left" title="Eliminar usuario">
+                                    <button type="button" name="delete_modal" class="btn btn-outline-danger delete">
+                                            <i class="fa fa-trash"></i>
+                                    </button>
+                                </span>
                             </td>
                         </tr>
                     @endforeach
@@ -66,6 +64,7 @@
             </div>
         </div>
     </div>
+    <a href="javascript:location.reload()" id="userPage"></a>
 @stop
 
 @section('css')
@@ -74,6 +73,5 @@
 @stop
 
 @section('js')
-    <script>
-    </script>
+    <script src="{{ asset('js/usuarios.js') }}"></script>
 @stop

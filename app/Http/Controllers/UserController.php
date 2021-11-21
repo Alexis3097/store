@@ -39,14 +39,14 @@ class UserController extends Controller
     {
         try {
             $user = $this->IUserRepository->create($request->all());
-            if(!is_null($user)){
+            if (!is_null($user)) {
                 $request->session()->flash('alert-success', 'Se ha guardado el usuario');
-            }else{
+            } else {
                 $request->session()->flash('alert-danger', 'no se ha guardado el usuario');
             }
             return redirect()->route('usuarios.index');
         } catch (Throwable $e) {
-            $request->session()->flash('alert-danger',  'Error de servidor');
+            $request->session()->flash('alert-danger', 'Error de servidor');
             return redirect()->route('usuarios.index');
         }
 
@@ -64,28 +64,38 @@ class UserController extends Controller
     {
         $usuario = $this->IUserRepository->show($id);
         $tipoUsuarios = $this->ITipoUsuarioRepository->all();
-        return view('usuarios.editar', compact('usuario','tipoUsuarios'));
+        return view('usuarios.editar', compact('usuario', 'tipoUsuarios'));
     }
 
 
     public function update(UpdateUser $request, $id)
     {
-       try{
-           $usuario = $this->IUserRepository->update($id, $request);
-           if(!is_null($usuario)){
-               $request->session()->flash('alert-success', 'Se ha actualizado el usuario');
-           }else{
-               $request->session()->flash('alert-danger', 'no se ha actualizado el usuario');
-           }
-           return redirect()->route('usuarios.index');
-       }catch (Throwable $e){
-           $request->session()->flash('alert-danger',  'Error de servidor');
-           return redirect()->route('usuarios.index');
-       }
+        try {
+            $usuario = $this->IUserRepository->update($id, $request);
+            if (!is_null($usuario)) {
+                $request->session()->flash('alert-success', 'Se ha actualizado el usuario');
+            } else {
+                $request->session()->flash('alert-danger', 'no se ha actualizado el usuario');
+            }
+            return redirect()->route('usuarios.index');
+        } catch (Throwable $e) {
+            $request->session()->flash('alert-danger', 'Error de servidor');
+            return redirect()->route('usuarios.index');
+        }
     }
 
     public function destroy($id)
     {
-        //
+        try {
+            $usuario = $this->IUserRepository->delete((int)$id);
+            if ($usuario) {
+                return response()->json('ok', 200);
+            } else {
+                return response()->json('Error', 400);
+            }
+        } catch (Throwable $e) {
+            return response()->json('Error de servidor', 500);
+        }
+
     }
 }

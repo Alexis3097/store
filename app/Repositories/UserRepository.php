@@ -48,7 +48,11 @@ class UserRepository implements IUserRepository
 
     public function delete($id)
     {
-        // TODO: Implement delete() method.
+        try {
+            return  User::find($id)->delete();
+        }catch (Throwable $e){
+            return false;
+        }
     }
     public function hashPassword($password): string
     {
