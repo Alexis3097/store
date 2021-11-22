@@ -53,13 +53,6 @@ class UserController extends Controller
     }
 
 
-    public function show($id)
-    {
-
-        dd('show' . $id);
-    }
-
-
     public function edit($id)
     {
         $usuario = $this->IUserRepository->show($id);

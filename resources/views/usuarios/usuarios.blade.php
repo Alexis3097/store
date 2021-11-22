@@ -66,12 +66,6 @@
     </div>
     <a href="javascript:location.reload()" id="userPage"></a>
 @stop
-
-@section('css')
-    /*
-    <link rel="stylesheet" href="/css/admin_custom.css">*/
-@stop
-
 @section('js')
     <script src="{{ asset('js/usuarios.js') }}"></script>
 @stop

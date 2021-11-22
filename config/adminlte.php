@@ -248,11 +248,13 @@ return [
 //        ],
         [
             'text'        => 'Usuarios',
-//            'url'         => 'admin/pages',
             'icon'        => 'fa fa-users',
             'route'         =>'usuarios.index'
-//            'label'       => 4,
-//            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Categorias',
+            'route'         => 'categoria-producto.index',
+            'icon'        => 'fa fa-tags',
         ],
         [
             'text'        => 'Productos',
