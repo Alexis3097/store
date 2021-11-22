@@ -247,19 +247,19 @@ return [
 //            'can'  => 'manage-blog',
 //        ],
         [
-            'text'        => 'Usuarios',
-            'icon'        => 'fa fa-users',
-            'route'         =>'usuarios.index'
+            'text' => 'Usuarios',
+            'icon' => 'fa fa-users',
+            'route' => 'usuarios.index'
         ],
         [
-            'text'        => 'Categorias',
-            'route'         => 'categoria-producto.index',
-            'icon'        => 'fa fa-tags',
+            'text' => 'Categorias',
+            'route' => 'categoria-producto.index',
+            'icon' => 'fa fa-tags',
         ],
         [
-            'text'        => 'Productos',
-            'url'         => 'admin/pages',
-            'icon'        => 'fa fa-store',
+            'text' => 'Productos',
+            'route' => 'producto.index',
+            'icon' => 'fa fa-store',
         ],
 //        ['header' => 'account_settings'],
 //        [

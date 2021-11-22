@@ -21,9 +21,13 @@ class AppServiceProvider extends ServiceProvider
             'App\IRepositories\ITipoUsuarioRepository',
             'App\Repositories\TipoUsuarioRepository'
         );
-          $this->app->bind(
+        $this->app->bind(
             'App\IRepositories\ICategoriaRepository',
             'App\Repositories\CategoriaRepository'
+        );
+        $this->app->bind(
+            'App\IRepositories\IProductoRepository',
+            'App\Repositories\ProductoRepository'
         );
 
     }

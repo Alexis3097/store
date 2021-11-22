@@ -17,7 +17,6 @@ class CreateProductoTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('categoria_id')->constrained('categoria_productos');
-            $table->foreignId('tipo_pago_id')->constrained('tipo_pago');
             $table->string('nombre');
             $table->text('descripcion');
             $table->string('foto_ruta');

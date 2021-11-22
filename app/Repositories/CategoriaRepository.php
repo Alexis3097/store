@@ -13,6 +13,9 @@ class CategoriaRepository implements ICategoriaRepository
         return CategoriaProducto::paginate(10);
     }
 
+    public  function allActive(){
+        return CategoriaProducto::where('activa',1)->get();
+    }
     public function create($data)
     {
         try {

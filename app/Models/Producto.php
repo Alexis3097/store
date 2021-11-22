@@ -14,7 +14,6 @@ class Producto extends Model
     protected $fillable = [
         'user_id',
         'categoria_id',
-        'tipo_pago_id',
         'nombre',
         'descripcion',
         'foto_ruta',
@@ -27,7 +26,7 @@ class Producto extends Model
 
     public function categoriaProducto()
     {
-        return $this->belongsTo(CategoriaProducto::class);
+        return $this->belongsTo(CategoriaProducto::class, 'categoria_id');
     }
 
     public function tipoPago()
