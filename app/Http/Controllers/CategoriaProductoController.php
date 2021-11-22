@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoria;
 use App\IRepositories\ICategoriaRepository;
 use Throwable;
-
+use Illuminate\Http\Request;
 class CategoriaProductoController extends Controller
 {
     private $ICategoriaRepository;
 
     public function __construct(ICategoriaRepository $ICategoriaRepository)
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('productoDetallado','allCategorias','buscarCategoria');
         $this->ICategoriaRepository = $ICategoriaRepository;
     }
     public function index(){
@@ -61,5 +61,16 @@ class CategoriaProductoController extends Controller
                 return response()->json('Error',500);
             }
         }
+    }
+
+
+    public function allCategorias(){
+        $categorias = $this->ICategoriaRepository->getCategoriasConProductos();
+        return view('welcome', compact('categorias'));
+    }
+
+    public function buscarCategoria(Request $request){
+        $categorias = $this->ICategoriaRepository->buscarCategoria($request->busqueda);
+        return view('welcome', compact('categorias'));
     }
 }

@@ -7,6 +7,17 @@
 
 @section('content')
     <div class="container">
+        <form action="{{route('producto.buscar')}}">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Buscar" aria-label="Buscar"
+                       aria-describedby="basic-addon2"
+                       name="busqueda">
+                <div class="input-group-append">
+                    <button class="btn btn-success" type="submit">Buscar</button>
+                </div>
+            </div>
+        </form>
+
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
@@ -49,6 +60,7 @@
                             </tr>
                         @endforeach
                     </div>
+                    {{ $productos->links() }}
                     </tbody>
                 </table>
             </div>

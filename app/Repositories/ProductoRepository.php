@@ -83,4 +83,19 @@ class ProductoRepository implements IProductoRepository
             return false;
         }
     }
+
+    public function buscar($data)
+    {
+        return Producto::where('nombre', 'like','%' .$data. '%')->paginate(10);
+    }
+
+    public function getProductosXcategoria($idCategoria)
+    {
+        return Producto::where('categoria_id', $idCategoria)->get();
+    }
+
+    public function buscarProductosXCategoria($query,$id)
+    {
+        return Producto::where('nombre', 'like','%' .$query. '%')->where('categoria_id',$id)->get();
+    }
 }

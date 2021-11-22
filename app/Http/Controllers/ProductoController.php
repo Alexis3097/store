@@ -16,7 +16,7 @@ class ProductoController extends Controller
 
     public function __construct(IProductoRepository $IProductoRepository, ICategoriaRepository $ICategoriaRepository)
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('productosXCategoria','productoDetallado','buscarProductosXCategoria');
         $this->IProductoRepository = $IProductoRepository;
         $this->ICategoriaRepository = $ICategoriaRepository;
     }
@@ -50,7 +50,7 @@ class ProductoController extends Controller
     {
         $categorias = $this->ICategoriaRepository->allActive();
         $producto = $this->IProductoRepository->show($id);
-        return view('producto.editar',compact('categorias','producto'));
+        return view('producto.editar', compact('categorias', 'producto'));
     }
 
 
@@ -83,5 +83,25 @@ class ProductoController extends Controller
         } catch (Throwable $e) {
             return response()->json('Error de servidor', 500);
         }
+    }
+
+    public function buscar(Request $request)
+    {
+        $productos = $this->IProductoRepository->buscar($request->busqueda);
+        return view('producto.productos', compact('productos'));
+    }
+
+    public function productosXCategoria($id){
+        $productos = $this->IProductoRepository->getProductosXcategoria($id);
+        return view('categoria', compact('productos'));
+    }
+    public function productoDetallado($id){
+        $producto = $this->IProductoRepository->show($id);
+        return view('producto-detallado',compact('producto'));
+    }
+
+    public function buscarProductosXCategoria(Request $request, $id){
+        $productos = $this->IProductoRepository->buscarProductosXCategoria($request->busqueda,$id);
+        return view('categoria', compact('productos'));
     }
 }

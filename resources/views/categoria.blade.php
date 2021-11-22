@@ -56,9 +56,12 @@
     <section class="jumbotron text-center">
         <div class="container">
             <h1 class="jumbotron-heading">TIENDA EN LINEA</h1>
+            <h2 class="jumbotron-heading">CATEGORIA: {{$productos[0]->categoriaProducto->nombre}}</h2>
             <p class="lead text-muted">Bienvenido, Busca entre todas las categorias disponibles y muchos de los
                 productos màs vendidos .</p>
-            <form action="{{route('buscarCategoria')}}">
+
+
+            <form action="{{route('categoria.productos.buscar',['idCategoria'=>$productos[0]->categoriaProducto->id])}}">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Buscar" aria-label="Buscar"
                            aria-describedby="basic-addon2"
@@ -68,25 +71,25 @@
                     </div>
                 </div>
             </form>
+
         </div>
     </section>
 
     <div class="album py-5 bg-light">
         <div class="container">
-            @if(!is_null($categorias))
+            @if(!is_null($productos))
                 <div class="row">
-                    @foreach($categorias as $categoria)
+                    @foreach($productos as $producto)
 
                         <div class="col-md-4">
                             <div class="card mb-4 box-shadow">
-                                <img class="card-img-top"
-                                     src="{{asset('uploads/productos/'.$categoria->producto[0]->foto_ruta)}}"
+                                <img class="card-img-top" src="{{asset('uploads/productos/'.$producto->foto_ruta)}}"
                                      alt="Card image cap">
                                 <div class="card-body">
-                                    <h5 class="card-title">CATEGORIA: {{$categoria->nombre}}</h5>
+                                    <h5 class="card-title">PRODUCTO: {{strtoupper($producto->nombre)}}</h5>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a href="{{route('categoria.productos',['id'=>$categoria->id])}}"
+                                            <a href="{{route('producto.detallado',['id'=>$producto->id])}}"
                                                class="btn btn-sm btn-outline-secondary">Ver Productos</a>
                                         </div>
                                     </div>
@@ -94,10 +97,10 @@
                             </div>
                         </div>
 
+
                     @endforeach
                 </div>
             @endif
-
         </div>
     </div>
 
