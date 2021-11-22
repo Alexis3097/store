@@ -247,6 +247,11 @@ return [
 //            'can'  => 'manage-blog',
 //        ],
         [
+            'text' => 'Dashboard',
+            'icon' => 'fa fa-home',
+            'route' => 'home'
+        ],
+        [
             'text' => 'Usuarios',
             'icon' => 'fa fa-users',
             'route' => 'usuarios.index'
